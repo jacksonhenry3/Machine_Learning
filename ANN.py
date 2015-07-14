@@ -17,12 +17,14 @@ class layer(object):
 
 class neuralNet(object):
     """docstring for neuralNet"""
-    def __init__(self, layers):
+    def __init__(self, layers, training = False):
         super(neuralNet, self).__init__()
         self.layers = layers
-        self.numHiddenLayers = len(self.layers)
+
+        #this is the number of layers, excluding the input  but including the output
+        self.numLayers = len(self.layers)
     def update(self,inputs):
-        for i in range(self.numHiddenLayers):
+        for i in range(self.numLayers):
             if  i > 0:
                 inputs = outputs
             outputs = []
@@ -33,6 +35,23 @@ class neuralNet(object):
                 neuronValue    = expit(rawNeuronValue)
                 outputs.append(neuronValue)
         return outputs
+
+    def backpropogate(inputs,desiredOutput):
+        desiredOutput = np.array(desiredOutput)
+        output        = np.array(update(inputs))
+        finalDelta    = desiredOutput-outputs
+        deltas        = {}
+        for i in range(self.numLayers-1,-1,-1):
+            for j in range(self.layers[i].numNeurons-1,-1,-1):
+                neuron = self.layers[i].neurons[j]
+                for k in range(neuron.numinputs-1,-1,-1):
+                    deltas[str(i)+str(j)+str(k)] = neuron.weights[k]
+                    neuron.weights[k] =
+                rawNeuronValue = sum([inputs[p]*w for p,w in enumerate(neuron.weights[:-1])])
+                neuronValue    = expit(rawNeuronValue)
+                outputs.append(neuronValue)
+        return outputs
+
 
 ipt = np.ones(8*8)
 l1_neurons = []
