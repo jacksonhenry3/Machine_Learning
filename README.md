@@ -17,6 +17,6 @@ My exploration of machine learning, In  particular cluster detection neural netw
     add genetic the ability to evolve neural nets via genetic algorithms
   </li>
   <li>
-    neural network to detect the presense ofins a square in an image
+    neural network to detect the presence of a square in an image
   </li>
 </ul>
