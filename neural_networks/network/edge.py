@@ -11,10 +11,14 @@ class edge(object):
         self.originNode   = originNode
 
     def update_weight(self,eta = 100):
+        #this is the gradient decent implimentation
         self.weight += eta*self.terminalNode.delta*self.terminalNode.deriv*self.originNode.val
+        # self.weight -= eta*self.terminalNode.delta*self.terminalNode.deriv*self.originNode.val
 
+    #send the value from edges start node to its end nodes raw sum
     def forward_propogate_val(self):
         self.terminalNode.raw += self.originNode.val*self.weight
 
+    #send the error from edges end node to its start nodes error
     def back_propogate_error(self):
         self.originNode.delta += self.terminalNode.delta*self.weight
