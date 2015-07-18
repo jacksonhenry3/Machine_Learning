@@ -11,10 +11,7 @@ My exploration of machine learning, In  particular cluster detection neural netw
     Optical character recognition
   </li>
   <li>
-    include genetic algorithm to generate an image
-  </li>
-  <li>
-    add genetic the ability to evolve neural nets via genetic algorithms
+    Add the ability to evolve neural nets via genetic algorithms
   </li>
   <li>
     neural network to detect the presence of a square in an image
