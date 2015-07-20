@@ -6,7 +6,7 @@ class neural_network(object):
     Layers is a list of list of nodes
     each sublist is a layer
     the first is an input layer the last is an output layer"""
-    def __init__(self, layers):
+    def __init__(self, layers,weights = None):
         super(neural_network, self).__init__()
 
         #this is a list of list of nodes
@@ -20,6 +20,11 @@ class neural_network(object):
         #initialize the edges with random weights
         self.edges     = {}
         self.initialize_edges()
+
+        if weights != None:
+            if len(weights) == len(self.edges):
+                for i,edge in enumerate(self.edges.value()):
+                    edge.weight = weights[i]
 
     def initialize_edges(self):
         #loops through all the edges and assigns random weights
@@ -140,9 +145,9 @@ def edge_name(x1,y1,x2,y2):
     return(str(x1)+str(y1)+','+str(x2)+str(y2))
 
 #allows you to more easily generate a network
-def generate_neural_network(layerSizes):
+def generate_neural_network(layerSizes, weights = None):
     """ This generates a feed forward neural network with 3 layers """
     layers = []
     for layerSize in layerSizes:
         layers.append([node() for i in range(layerSize)])
-    return(neural_network(layers))
+    return(neural_network(layers,weights = weights))
