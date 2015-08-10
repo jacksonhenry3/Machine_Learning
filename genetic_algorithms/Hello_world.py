@@ -36,7 +36,7 @@ def generate_creature():
     return(creature(val))
 
 
-pop_size = 4000
+pop_size = 100
 mating_pool_size = pop_size/4
 
 population = [generate_creature() for j in range(pop_size)]
