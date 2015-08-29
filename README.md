@@ -6,12 +6,7 @@ My exploration of machine learning, In  particular cluster detection neural netw
     Finnish K Means Clustering
   </li>
   <li>
-    Add linear algebra based calculations in to neural network code <a href = 'http://neuralnetworksanddeeplearning.com/chap1.html'>link</a>.
-  <li>
     Optical character recognition
-  </li>
-  <li>
-    Add the ability to evolve neural nets via genetic algorithms.
   </li>
   <li>
     Neural network to detect the presence of a square in an image

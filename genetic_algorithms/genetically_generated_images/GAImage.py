@@ -1,6 +1,6 @@
 from random import randint,random
-import numpy as np 
-import matplotlib.pyplot as plt 
+import numpy as np
+import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 img=mpimg.imread('Lichtenstein_test.png')[:,:,0:3]*255
 img =  img.astype('uint8')

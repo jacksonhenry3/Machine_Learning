@@ -1,7 +1,8 @@
 import sys
-sys.path.insert(0, './network')
+sys.path.insert(0, '../../network')
+from neuralNetwork import network
 
-from neural_network import *
+import numpy as np
 import matplotlib.pyplot as plt
 
 """
@@ -13,34 +14,33 @@ acuracy = []
 length  = 10 # the length of the binary array
 
 #each iteration generates and tests a neural network
-for i in range(2):
+for i in range(200):
 
     #generate the network
-    inverter     = generate_neural_network([length,100,length],weights = np.ones(length*100*length))
+    inverter     = network([length,100,length])
 
     #generate some training data
     trainingData = []
-    for i in range(int(2**length/10)):
+    for i in range(int(2**length/25)):
         inData  = np.floor(np.random.random(length)*2)
         outData = np.abs(inData-1)
         trainingData.append([inData,outData])
 
     #give the network the training data
-    inverter.train(trainingData,acceptableError = .1)
+    inverter.train(trainingData)
 
     #calculate how acutrate the netowrk is
     tot = 0
-    for i in range(100):
+    for i in range(1000):
         inData  = np.floor(np.random.random(length)*2)
         outData = np.abs(inData-1)
-        inverter.feed_forward(inData)
-        out = np.rint(inverter.get_output())
+        out = np.rint(inverter.feedForward(inData)[-1])
         if np.sum(np.abs(out-outData))==0:
             tot+=1
 
-    print "Training complete, network is " +str(tot)+"% acurate"
+    print "Training complete, network is " +str(tot/10.)+"% acurate"
     print '========================================================'
     print('\n')
-    acuracy.append(tot/1.)
+    acuracy.append(tot/10.)
 plt.hist(acuracy)
 plt.show()
