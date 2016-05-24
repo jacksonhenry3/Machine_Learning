@@ -1,4 +1,5 @@
 import numpy as np
+from sys import exit
 from scipy.special import expit
 
 class network(object):
@@ -29,8 +30,19 @@ class network(object):
             # add a one to the input vector to represent the bias
             inputVector = np.append(inputVector,1)
 
-            #propogate forward via a dot product and then take the sigmoid of the value
-            inputVector = expit(np.dot(inputVector,layer))
+            # print inputVector.shape
+            # print layer.shape
+
+            try:
+                #propogate forward via a dot product and then take the sigmoid of the value
+                inputVector = expit(np.dot(inputVector,layer))
+            except ValueError:
+                print "Your input vector is the wrong shape! This makes it incompatible with your network."
+                print 'The shape of your input vector is '+str(inputVector.shape)+' while the relevant network layer has shape '+str(layer.shape)
+                # exit()
+
+
+
 
             values.append(inputVector)
         return(values)
@@ -70,7 +82,7 @@ class network(object):
             self.layers[i] = layer+eta*deltas*deriv*inpts
         return(desiredOutput-output[-1])
 
-    def train(self, trainingData, minibatchSize = 1, eta = 1, errorThreshold = .05, maxEpoch = 2000, verbose = False):
+    def train(self, trainingData, minibatchSize = 10, eta = 1, errorThreshold = .05, maxEpoch = 2000, verbose = False):
         """
             Trains the network using stochatcic gradient desent from training data untill error is less than errorThreshold
                 trainingData   : a list of tuples. The first entry in each tuple is the input and the second is the output.
