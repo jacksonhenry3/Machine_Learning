@@ -14,18 +14,19 @@ acuracy = []
 length  = 10 # the length of the binary array
 
 #each iteration generates and tests a neural network
-for i in range(200):
+for i in range(2):
 
     #generate the network
     inverter     = network([length,100,length])
 
     #generate some training data
     trainingData = []
-    for i in range(int(2**length/25)):
+    # for i in range(int(2**length/25)):
+    for i in range(5):
         inData  = np.floor(np.random.random(length)*2)
         outData = np.abs(inData-1)
         trainingData.append([inData,outData])
-
+    # print train
     #give the network the training data
     inverter.train(trainingData)
 
